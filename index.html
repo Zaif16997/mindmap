@@ -3,313 +3,229 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>NST Entrepreneurship Policy Plan — Mindmap</title>
-<script src="https://d3js.org/d3.v7.min.js"></script>
+<title>NST Entrepreneurship Policy Plan — Static Mindmap</title>
 <style>
-  :root{
-    --bg:#f7fafc;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --accent:#0f172a;
-    --accent-2:#0ea5a4;
-  }
-  html,body{height:100%;margin:0;font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);color:var(--accent)}
-  .app{display:flex; height:100vh; gap:12px; padding:14px; box-sizing:border-box;}
-  .canvas{flex:1 1 auto; background:linear-gradient(180deg,#fbfdff 0%, #f7fafc 100%); border-radius:12px; padding:8px; box-shadow:0 6px 18px rgba(12,24,40,.06); position:relative; overflow:hidden;}
-  svg{width:100%; height:100%; display:block}
-  .controls{width:360px; flex:0 0 360px; background:var(--card); border-radius:12px; padding:14px; box-shadow:0 8px 30px rgba(8,20,40,.06); overflow:auto;}
-  h2{margin:2px 0 8px 0;font-size:16px}
-  .btn{display:inline-block;padding:8px 10px;border-radius:8px;margin:6px 6px 6px 0;cursor:pointer;border:1px solid rgba(15,23,42,.06);background:#fff;font-size:13px}
-  .btn.primary{background:var(--accent-2);color:white;border:none}
-  .small{font-size:12px;color:var(--muted);margin-top:8px}
-  .node-rect{fill:#fff;stroke:#e6edf0;stroke-width:1;rx:10;filter:drop-shadow(0 6px 18px rgba(2,6,23,.06))}
-  .node-title{font-weight:700;font-size:13px;fill:var(--accent)}
-  .node-sub{font-size:12px;fill:var(--muted)}
-  .link{fill:none;stroke:#cbd5e1;stroke-width:2}
-  .highlight{stroke:var(--accent-2) !important;stroke-width:3px !important}
-  .sidebar{margin-top:10px;font-size:14px;color:#111827}
-  .meta{font-size:13px;color:var(--muted);margin-top:6px;white-space:pre-wrap}
-  .footer{font-size:12px;color:var(--muted);margin-top:12px}
-  .toggle{cursor:pointer;color:var(--accent-2);text-decoration:underline;font-size:13px;margin-left:6px}
-  @media (max-width:900px){.app{flex-direction:column}.controls{width:100%;order:2;height:360px}.canvas{order:1;height:60vh}}
+  html,body { height:100%; margin:0; background:#F7FAFC; font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  .wrap { display:flex; align-items:flex-start; justify-content:center; padding:18px; box-sizing:border-box; }
+  /* SVG container keeps center margin and white background look */
+  svg { background: none; }
+  /* Node style mirrored from PlantUML look */
+  .node-rect { fill: #ffffff; stroke: #111827; stroke-opacity:0.9; stroke-width:1.5; rx:12; ry:12; filter: drop-shadow(0 4px 10px rgba(15,23,42,0.06)); }
+  .node-text { fill:#0f172a; font-weight:600; font-size:14px; dominant-baseline:middle; }
+  .sub-text { fill:#111827; font-size:13px; font-weight:500; dominant-baseline:middle; }
+  .link { fill:none; stroke:#111827; stroke-opacity:0.2; stroke-width:1.6; }
+  /* subtle inner stroke to emulate PlantUML node border thickness */
+  .node-inner { fill:none; stroke:#e6edf0; stroke-width:0; }
+  /* Make text slightly lighter to match image */
+  .node-subtle { fill:#111827; opacity:0.9; font-size:13px; font-weight:500; }
+  /* Prevent text selection (pure visual) */
+  text { user-select: none; }
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="canvas" id="canvas" aria-label="Mindmap canvas">
-    <svg id="svg" role="img" aria-label="Mindmap"></svg>
-  </div>
+<div class="wrap">
+  <!-- Static SVG mindmap: fixed layout to match PlantUML look -->
+  <svg width="1200" height="950" viewBox="0 0 1200 950" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NST Entrepreneurship Policy Plan mindmap (static)">
+    <defs>
+      <!-- subtle shadow filter -->
+      <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.06"/>
+      </filter>
+    </defs>
 
-  <div class="controls" id="controls" aria-label="Controls">
-    <h2>NST Entrepreneurship Policy Plan</h2>
-    <div style="margin-bottom:8px">
-      <button class="btn" id="expandAll">Expand all</button>
-      <button class="btn" id="collapseAll">Collapse all</button>
-      <button class="btn primary" id="fitView">Fit view</button>
-    </div>
-    <div class="small">Tip: drag to pan, scroll to zoom, click node to expand/collapse, double-click to pin details.</div>
+    <!-- Root node (left) -->
+    <g id="root" transform="translate(20,455)">
+      <rect class="node-rect" x="0" y="-26" width="190" height="52" rx="14" ry="14" filter="url(#shadow)"></rect>
+      <text class="node-text" x="16" y="0">NST Entrepreneurship Policy Plan</text>
+    </g>
 
-    <div class="sidebar" id="sidebar">
-      <div style="font-weight:700;margin-top:12px">Node details</div>
-      <div id="nodeTitle" style="margin-top:8px;font-size:15px;font-weight:600">(click a node)</div>
-      <div id="nodeMeta" class="meta">Click a node to view its text exactly as in the PlantUML input.</div>
-      <div id="nodeExtras" class="small"></div>
-    </div>
+    <!-- Major nodes (middle column) -->
+    <!-- Overview -->
+    <g id="overview" transform="translate(300,60)">
+      <rect class="node-rect" x="0" y="-22" width="340" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Overview: Stage-based support & governance</text>
+    </g>
 
-    <div class="footer">This page is the HTML equivalent of your PlantUML mindmap. Paste / host this file on GitHub Pages.</div>
-  </div>
+    <!-- Stages -->
+    <g id="stages" transform="translate(300,170)">
+      <rect class="node-rect" x="0" y="-22" width="140" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="12" y="0">Stages</text>
+    </g>
+
+    <!-- Application Process -->
+    <g id="application" transform="translate(300,300)">
+      <rect class="node-rect" x="0" y="-22" width="300" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Application Process</text>
+    </g>
+
+    <!-- Mentorship -->
+    <g id="mentorship" transform="translate(300,420)">
+      <rect class="node-rect" x="0" y="-22" width="300" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Mentorship & Immersion</text>
+    </g>
+
+    <!-- Funding -->
+    <g id="funding" transform="translate(300,520)">
+      <rect class="node-rect" x="0" y="-22" width="300" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Funding & Grants</text>
+    </g>
+
+    <!-- Monitoring -->
+    <g id="monitoring" transform="translate(300,620)">
+      <rect class="node-rect" x="0" y="-22" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Monitoring & KPIs</text>
+    </g>
+
+    <!-- Academic Benefits -->
+    <g id="academic" transform="translate(300,720)">
+      <rect class="node-rect" x="0" y="-22" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Academic Benefits</text>
+    </g>
+
+    <!-- Revocation -->
+    <g id="revocation" transform="translate(300,820)">
+      <rect class="node-rect" x="0" y="-22" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-text" x="14" y="0">Revocation</text>
+    </g>
+
+    <!-- Connect root to major nodes with elegant elbow-like curved lines -->
+    <!-- Overview link -->
+    <path class="link" d="M210,455 C260,455 280,160 300,160" stroke-linecap="round"></path>
+    <!-- Stages link -->
+    <path class="link" d="M210,455 C260,455 280,260 300,190" stroke-linecap="round"></path>
+    <!-- Application link -->
+    <path class="link" d="M210,455 C260,455 280,330 300,320" stroke-linecap="round"></path>
+    <!-- Mentorship link -->
+    <path class="link" d="M210,455 C260,455 280,440 300,420" stroke-linecap="round"></path>
+    <!-- Funding link -->
+    <path class="link" d="M210,455 C260,455 280,510 300,520" stroke-linecap="round"></path>
+    <!-- Monitoring link -->
+    <path class="link" d="M210,455 C260,455 280,610 300,620" stroke-linecap="round"></path>
+    <!-- Academic link -->
+    <path class="link" d="M210,455 C260,455 280,710 300,720" stroke-linecap="round"></path>
+    <!-- Revocation link -->
+    <path class="link" d="M210,455 C260,455 280,810 300,820" stroke-linecap="round"></path>
+
+    <!-- Subnodes: Overview -> Central Committee -->
+    <g id="overview-sub" transform="translate(640,60)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Central Committee: approves AW, funding & revocations</text>
+    </g>
+    <path class="link" d="M640,60 L340,60" stroke-linecap="round"></path>
+
+    <!-- Stages subnodes -->
+    <g id="stage1" transform="translate(640,140)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Stage 1 — Idea : 2-page brief • validation • monthly reports</text>
+    </g>
+    <path class="link" d="M440,170 C520,170 580,150 640,150" stroke-linecap="round"></path>
+
+    <g id="stage2" transform="translate(640,200)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Stage 2 — Prototype : MVP • tech review • bi-weekly updates • prototype grants</text>
+    </g>
+    <path class="link" d="M440,170 C520,200 580,200 640,200" stroke-linecap="round"></path>
+
+    <g id="stage3" transform="translate(640,260)">
+      <rect class="node-rect" x="0" y="-20" width="600" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Stage 3 — Building : traction (LOIs/revenue) • strict deferment • scaling grants</text>
+    </g>
+    <path class="link" d="M440,170 C520,240 580,260 640,260" stroke-linecap="round"></path>
+
+    <!-- Application Process subnodes -->
+    <g id="app-sub1" transform="translate(640,260)">
+      <!-- empty placeholder to avoid overlap with stage3; actual subnodes below -->
+    </g>
+    <g id="app-subA" transform="translate(640,300)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Submit : brief or MVP package + evidence</text>
+    </g>
+    <path class="link" d="M540,300 C590,300 610,300 640,300" stroke-linecap="round"></path>
+
+    <g id="app-subB" transform="translate(640,340)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Evaluate : campus PoC -> central committee review</text>
+    </g>
+    <path class="link" d="M540,300 C590,330 610,340 640,340" stroke-linecap="round"></path>
+
+    <g id="app-subC" transform="translate(640,380)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Decision timing : target ≤ 10 working days</text>
+    </g>
+    <path class="link" d="M540,300 C590,360 610,380 640,380" stroke-linecap="round"></path>
+
+    <!-- Mentorship subnodes -->
+    <g id="ment-sub1" transform="translate(640,420)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Internal Ideathon : surface top teams for mentors</text>
+    </g>
+    <path class="link" d="M540,420 C590,420 610,420 640,420" stroke-linecap="round"></path>
+
+    <g id="ment-sub2" transform="translate(640,460)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Industry Mentors : live projects, check-ins, reviews</text>
+    </g>
+    <path class="link" d="M540,420 C590,450 610,460 640,460" stroke-linecap="round"></path>
+
+    <!-- Funding subnodes -->
+    <g id="fund-sub1" transform="translate(640,520)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Micro-grants : awarded at pitch-day; reporting required</text>
+    </g>
+    <path class="link" d="M540,520 C590,520 610,520 640,520" stroke-linecap="round"></path>
+
+    <g id="fund-sub2" transform="translate(640,560)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Prototype grants : conditional on milestones</text>
+    </g>
+    <path class="link" d="M540,520 C590,550 610,560 640,560" stroke-linecap="round"></path>
+
+    <g id="fund-sub3" transform="translate(640,600)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Scaling grants : monthly reports + legal/IP support</text>
+    </g>
+    <path class="link" d="M540,520 C590,580 610,600 640,600" stroke-linecap="round"></path>
+
+    <!-- Monitoring subnodes -->
+    <g id="mon-sub1" transform="translate(640,640)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Cadence : monthly / bi-weekly / quarterly (by stage)</text>
+    </g>
+    <path class="link" d="M540,620 C590,630 610,635 640,640" stroke-linecap="round"></path>
+
+    <g id="mon-sub2" transform="translate(640,680)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Example KPIs : milestones met, users/signups, revenue, retention</text>
+    </g>
+    <path class="link" d="M540,620 C590,660 610,675 640,680" stroke-linecap="round"></path>
+
+    <!-- Academic subnodes -->
+    <g id="acad-sub1" transform="translate(640,720)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Attendance Waiver (AW) : case-by-case by committee</text>
+    </g>
+    <path class="link" d="M540,720 C590,720 610,720 640,720" stroke-linecap="round"></path>
+
+    <g id="acad-sub2" transform="translate(640,760)">
+      <rect class="node-rect" x="0" y="-20" width="600" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Deferment : strict criteria; requires business plan + re-entry agreement</text>
+    </g>
+    <path class="link" d="M540,720 C590,750 610,760 640,760" stroke-linecap="round"></path>
+
+    <!-- Revocation subnodes -->
+    <g id="rev-sub1" transform="translate(640,820)">
+      <rect class="node-rect" x="0" y="-20" width="680" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Triggers : missed updates, &lt;60% milestones, financial misuse, end-sem/mid-sem failure</text>
+    </g>
+    <path class="link" d="M540,820 C590,800 610,805 640,820" stroke-linecap="round"></path>
+
+    <g id="rev-sub2" transform="translate(640,860)">
+      <rect class="node-rect" x="0" y="-20" width="540" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="sub-text" x="14" y="0">Remedies : revoke benefits, require reinstatement steps</text>
+    </g>
+    <path class="link" d="M540,820 C590,840 610,850 640,860" stroke-linecap="round"></path>
+
+  </svg>
 </div>
-
-<script>
-/* EXACT tree structure and text copied from your PlantUML */
-const treeData = {
-  "label":"NST Entrepreneurship Policy Plan",
-  "title":"NST Entrepreneurship Policy Plan",
-  "children":[
-    {
-      "label":"Overview: Stage-based support & governance",
-      "children":[
-        {"label":"Central Committee: approves AW, funding & revocations"}
-      ]
-    },
-
-    {
-      "label":"Stages",
-      "children":[
-        {"label":"Stage 1 — Idea : 2-page brief • validation • monthly reports"},
-        {"label":"Stage 2 — Prototype : MVP • tech review • bi-weekly updates • prototype grants"},
-        {"label":"Stage 3 — Building : traction (LOIs/revenue) • strict deferment • scaling grants"}
-      ]
-    },
-
-    {
-      "label":"Application Process",
-      "children":[
-        {"label":"Submit : brief or MVP package + evidence"},
-        {"label":"Evaluate : campus PoC -> central committee review"},
-        {"label":"Decision timing : target ≤ 10 working days"}
-      ]
-    },
-
-    {
-      "label":"Mentorship & Immersion",
-      "children":[
-        {"label":"Internal Ideathon : surface top teams for mentors"},
-        {"label":"Industry Mentors : live projects, check-ins, reviews"}
-      ]
-    },
-
-    {
-      "label":"Funding & Grants",
-      "children":[
-        {"label":"Micro-grants : awarded at pitch-day; reporting required"},
-        {"label":"Prototype grants : conditional on milestones"},
-        {"label":"Scaling grants : monthly reports + legal/IP support"}
-      ]
-    },
-
-    {
-      "label":"Monitoring & KPIs",
-      "children":[
-        {"label":"Cadence : monthly / bi-weekly / quarterly (by stage)"},
-        {"label":"Example KPIs : milestones met, users/signups, revenue, retention"}
-      ]
-    },
-
-    {
-      "label":"Academic Benefits",
-      "children":[
-        {"label":"Attendance Waiver (AW) : case-by-case by committee"},
-        {"label":"Deferment : strict criteria; requires business plan + re-entry agreement"}
-      ]
-    },
-
-    {
-      "label":"Revocation",
-      "children":[
-        {"label":"Triggers : missed updates, <60% milestones, financial misuse, end-sem/mid-sem failure"},
-        {"label":"Remedies : revoke benefits, require reinstatement steps"}
-      ]
-    }
-  ]
-};
-
-/* ---------- D3 rendering ---------- */
-const svg = d3.select("#svg");
-const canvas = document.getElementById('canvas');
-const g = svg.append("g").attr("transform","translate(20,20)");
-
-const width = canvas.clientWidth;
-const height = canvas.clientHeight;
-
-const treeLayout = d3.tree().nodeSize([100, 260]);
-let root = d3.hierarchy(treeData);
-root.x0 = height/2;
-root.y0 = 0;
-
-// initially collapse all children except root immediate children (keeps it readable)
-if(root.children){
-  root.children.forEach(d => { if(d.children) { d._children = d.children; d.children = null; } });
-}
-
-const duration = 300;
-const nodeW = 300;
-const nodeVSpacing = 100;
-const nodeHSpacing = 260;
-
-// zoom & pan
-const zoom = d3.zoom().scaleExtent([0.25, 3]).on("zoom", (event)=> { g.attr("transform", event.transform); });
-svg.call(zoom);
-
-// controls
-document.getElementById('fitView').addEventListener('click', ()=> fitToView());
-document.getElementById('expandAll').addEventListener('click', ()=> { expandAll(root); update(root); });
-document.getElementById('collapseAll').addEventListener('click', ()=> { collapseAll(root); update(root); });
-
-update(root);
-fitToView();
-
-/* update */
-function update(source){
-  const tree = treeLayout(root);
-  const nodes = tree.descendants();
-  const links = tree.links();
-
-  nodes.forEach(d => d.y = d.depth * nodeHSpacing);
-
-  // LINKS - orthogonal elbow to reduce overlap
-  const link = g.selectAll("path.link").data(links, d => d.target.data.label + "-" + d.target.depth);
-  const linkEnter = link.enter().append("path").attr("class","link")
-    .attr("d", d => elbow({source:{x:source.x0,y:source.y0}, target:{x:source.x0,y:source.y0}}))
-    .style("opacity",0);
-  link.exit().transition().duration(duration).style("opacity",0).remove();
-  linkEnter.merge(link).transition().duration(duration).style("opacity",1).attr("d", elbow);
-
-  // NODES
-  const node = g.selectAll("g.node").data(nodes, d => d.data.label + "-" + d.depth);
-  const nodeEnter = node.enter().append("g").attr("class","node")
-    .attr("transform", d => `translate(${source.y0},${source.x0})`)
-    .style("cursor","pointer")
-    .on("click",(event,d)=>{ event.stopPropagation(); toggle(d); update(d); showDetails(d); })
-    .on("dblclick",(event,d)=>{ event.stopPropagation(); showDetails(d,true); });
-
-  nodeEnter.append("rect")
-    .attr("class","node-rect")
-    .attr("width", nodeW)
-    .attr("height", 52)
-    .attr("x",0)
-    .attr("y",-26)
-    .attr("rx",10).attr("ry",10);
-
-  nodeEnter.append("text")
-    .attr("class","node-title")
-    .attr("x",14).attr("y",-6)
-    .text(d => d.data.label)
-    .call(wrapText, nodeW - 28);
-
-  nodeEnter.append("text")
-    .attr("class","node-sub")
-    .attr("x",14).attr("y",20)
-    .text(d => "")
-    .call(wrapText, nodeW - 28);
-
-  const nodeMerge = nodeEnter.merge(node);
-  nodeMerge.transition().duration(duration).attr("transform", d => `translate(${d.y},${d.x})`);
-
-  nodeMerge.each(function(d){
-    const n = d3.select(this);
-    const titleEl = n.select("text.node-title").node();
-    const titleLines = titleEl ? titleEl.getElementsByTagName('tspan').length || 1 : 1;
-    const rectH = 22 + (titleLines * 16);
-    n.select("rect.node-rect").attr("height", rectH).attr("y", -rectH/2);
-  });
-
-  node.exit().transition().duration(duration).attr("transform", d => `translate(${source.y},${source.x})`).remove();
-
-  nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
-}
-
-/* elbow path */
-function elbow(d){
-  const s={x:d.source.x,y:d.source.y}, t={x:d.target.x,y:d.target.y};
-  const midY = (s.y + t.y)/2;
-  return `M ${s.y + 150} ${s.x} L ${midY + 150} ${s.x} L ${midY + 150} ${t.x} L ${t.y + 150} ${t.x}`;
-}
-
-/* collapse/expand helpers */
-function collapse(d){ if(d.children){ d._children = d.children; d._children.forEach(collapse); d.children = null; } }
-function expand(d){ if(d._children){ d.children = d._children; d.children.forEach(expand); d._children = null; } }
-function toggle(d){ if(d.children){ d._children = d.children; d.children = null; } else { d.children = d._children; d._children = null; } }
-function expandAll(node){ node.children && node.children.forEach(c=> expandAll(c)); if(node._children) { node.children = node._children; node._children = null; } }
-function collapseAll(node){ node.children && node.children.forEach(c=> collapseAll(c)); if(node.children) { node._children = node.children; node.children = null; } }
-
-/* details pane */
-let pinned = false;
-function showDetails(d, pin=false){
-  pinned = !!pin;
-  const title = d.data.label;
-  const meta = (d.data.title ? d.data.title + "\n\n" : "") + "";
-  document.getElementById('nodeTitle').innerText = title;
-  document.getElementById('nodeMeta').innerText = meta + (d.data.children ? "" : "");
-  document.getElementById('nodeExtras').innerText = `Depth: ${d.depth} • Children: ${(d.children || d._children || []).length}`;
-  clearHighlight();
-  highlightNode(d);
-  if(!pinned) centerNode(d);
-}
-
-/* center selected node */
-function centerNode(d){
-  const svgRect = svg.node().getBoundingClientRect();
-  const scale = 1.0;
-  const x = -d.y * scale + svgRect.width/2 - 160;
-  const y = -d.x * scale + svgRect.height/2;
-  svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(x,y).scale(scale));
-}
-
-/* highlight */
-function highlightNode(d){
-  g.selectAll("rect.node-rect").classed("highlight", false);
-  const nodes = g.selectAll("g.node").nodes();
-  const match = nodes.find(n => n.__data__ === d);
-  if(match) d3.select(match).select("rect.node-rect").classed("highlight", true);
-}
-function clearHighlight(){ g.selectAll("rect.node-rect").classed("highlight", false); }
-
-/* expand path */
-function expandPathTo(target){ let node = target; while(node.parent){ if(node.parent._children){ node.parent.children = node.parent._children; node.parent._children = null; } node = node.parent; } }
-
-/* fitToView - simple reset that recenters */
-function fitToView(){
-  const svgRect = svg.node().getBoundingClientRect();
-  svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity.translate(20,20).scale(1));
-}
-
-/* wrap text into tspans */
-function wrapText(selection, width){
-  selection.each(function(){
-    const text = d3.select(this);
-    const words = text.text().split(/\s+/).reverse();
-    let word; let line=[]; let lineNumber=0; const lineHeight=1.05; const x = text.attr("x"); const y = text.attr("y");
-    text.text(null);
-    let tspan = text.append("tspan").attr("x",x).attr("y",y).attr("dy","0em");
-    while(word = words.pop()){
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width){
-        line.pop();
-        tspan.text(line.join(" "));
-        line=[word];
-        tspan = text.append("tspan").attr("x",x).attr("y",y).attr("dy",++lineNumber*lineHeight + "em").text(word);
-      }
-    }
-  });
-}
-
-/* click outside to clear highlight/unpin */
-svg.on("click", (event)=>{ if(event.target.tagName === 'svg'){ clearHighlight(); if(!pinned){ document.getElementById('nodeTitle').innerText="(click a node)"; document.getElementById('nodeMeta').innerText="Click a node to view its text exactly as in the PlantUML input."; document.getElementById('nodeExtras').innerText=""; } } });
-
-/* initial fit */
-setTimeout(()=> fitToView(), 400);
-</script>
 </body>
 </html>

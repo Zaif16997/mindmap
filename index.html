@@ -3,227 +3,210 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>NST Entrepreneurship Policy Plan — Static Mindmap</title>
+<title>NST Entrepreneurship Policy Plan — Static Clean Mindmap</title>
 <style>
-  html,body { height:100%; margin:0; background:#F7FAFC; font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-  .wrap { display:flex; align-items:flex-start; justify-content:center; padding:18px; box-sizing:border-box; }
-  /* SVG container keeps center margin and white background look */
-  svg { background: none; }
-  /* Node style mirrored from PlantUML look */
-  .node-rect { fill: #ffffff; stroke: #111827; stroke-opacity:0.9; stroke-width:1.5; rx:12; ry:12; filter: drop-shadow(0 4px 10px rgba(15,23,42,0.06)); }
-  .node-text { fill:#0f172a; font-weight:600; font-size:14px; dominant-baseline:middle; }
-  .sub-text { fill:#111827; font-size:13px; font-weight:500; dominant-baseline:middle; }
-  .link { fill:none; stroke:#111827; stroke-opacity:0.2; stroke-width:1.6; }
-  /* subtle inner stroke to emulate PlantUML node border thickness */
-  .node-inner { fill:none; stroke:#e6edf0; stroke-width:0; }
-  /* Make text slightly lighter to match image */
-  .node-subtle { fill:#111827; opacity:0.9; font-size:13px; font-weight:500; }
-  /* Prevent text selection (pure visual) */
-  text { user-select: none; }
+  html,body { height:100%; margin:0; background:#F7FAFC; font-family: "Arial", Helvetica, sans-serif; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  .center { display:flex; justify-content:center; padding:18px; box-sizing:border-box; }
+  svg { display:block; }
+  /* Node visuals */
+  .node-rect { fill:#ffffff; stroke:#0f172a; stroke-opacity:0.18; stroke-width:1.8; rx:12; ry:12; filter: drop-shadow(0 6px 18px rgba(2,6,23,0.06)); }
+  .node-title { fill:#0f172a; font-weight:700; font-size:14px; }
+  .node-sub { fill:#0f172a; font-weight:600; font-size:13px; }
+  .link { fill:none; stroke:#0f172a; stroke-opacity:0.16; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <!-- Static SVG mindmap: fixed layout to match PlantUML look -->
-  <svg width="1200" height="950" viewBox="0 0 1200 950" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NST Entrepreneurship Policy Plan mindmap (static)">
+<div class="center">
+  <!-- Canvas sized to fit a wide mindmap comfortably -->
+  <svg width="1500" height="1100" viewBox="0 0 1500 1100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NST Entrepreneurship Policy Plan mindmap - static, cleaned layout">
     <defs>
-      <!-- subtle shadow filter -->
       <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-        <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.06"/>
+        <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.06"/>
       </filter>
     </defs>
 
     <!-- Root node (left) -->
-    <g id="root" transform="translate(20,455)">
-      <rect class="node-rect" x="0" y="-26" width="190" height="52" rx="14" ry="14" filter="url(#shadow)"></rect>
-      <text class="node-text" x="16" y="0">NST Entrepreneurship Policy Plan</text>
+    <g transform="translate(60,540)">
+      <rect class="node-rect" x="0" y="-26" width="240" height="52" rx="14" ry="14" filter="url(#shadow)"></rect>
+      <text class="node-title" x="18" y="0">NST Entrepreneurship Policy Plan</text>
     </g>
 
-    <!-- Major nodes (middle column) -->
+    <!-- Primary column of parent nodes (x=360) -->
     <!-- Overview -->
-    <g id="overview" transform="translate(300,60)">
-      <rect class="node-rect" x="0" y="-22" width="340" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Overview: Stage-based support & governance</text>
+    <g transform="translate(360,120)">
+      <rect class="node-rect" x="0" y="-26" width="500" height="52" rx="14" ry="14" filter="url(#shadow)"></rect>
+      <text class="node-title" x="18" y="0">Overview: Stage-based support &amp; governance</text>
     </g>
 
     <!-- Stages -->
-    <g id="stages" transform="translate(300,170)">
-      <rect class="node-rect" x="0" y="-22" width="140" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="12" y="0">Stages</text>
+    <g transform="translate(360,220)">
+      <rect class="node-rect" x="0" y="-26" width="160" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="12" y="0">Stages</text>
     </g>
 
     <!-- Application Process -->
-    <g id="application" transform="translate(300,300)">
-      <rect class="node-rect" x="0" y="-22" width="300" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Application Process</text>
+    <g transform="translate(360,340)">
+      <rect class="node-rect" x="0" y="-26" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="14" y="0">Application Process</text>
     </g>
 
     <!-- Mentorship -->
-    <g id="mentorship" transform="translate(300,420)">
-      <rect class="node-rect" x="0" y="-22" width="300" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Mentorship & Immersion</text>
+    <g transform="translate(360,440)">
+      <rect class="node-rect" x="0" y="-26" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="14" y="0">Mentorship &amp; Immersion</text>
     </g>
 
     <!-- Funding -->
-    <g id="funding" transform="translate(300,520)">
-      <rect class="node-rect" x="0" y="-22" width="300" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Funding & Grants</text>
+    <g transform="translate(360,540)">
+      <rect class="node-rect" x="0" y="-26" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="14" y="0">Funding &amp; Grants</text>
     </g>
 
     <!-- Monitoring -->
-    <g id="monitoring" transform="translate(300,620)">
-      <rect class="node-rect" x="0" y="-22" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Monitoring & KPIs</text>
+    <g transform="translate(360,640)">
+      <rect class="node-rect" x="0" y="-26" width="420" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="14" y="0">Monitoring &amp; KPIs</text>
     </g>
 
     <!-- Academic Benefits -->
-    <g id="academic" transform="translate(300,720)">
-      <rect class="node-rect" x="0" y="-22" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Academic Benefits</text>
+    <g transform="translate(360,740)">
+      <rect class="node-rect" x="0" y="-26" width="420" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="14" y="0">Academic Benefits</text>
     </g>
 
     <!-- Revocation -->
-    <g id="revocation" transform="translate(300,820)">
-      <rect class="node-rect" x="0" y="-22" width="360" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="node-text" x="14" y="0">Revocation</text>
+    <g transform="translate(360,840)">
+      <rect class="node-rect" x="0" y="-26" width="420" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-title" x="14" y="0">Revocation</text>
     </g>
 
-    <!-- Connect root to major nodes with elegant elbow-like curved lines -->
-    <!-- Overview link -->
-    <path class="link" d="M210,455 C260,455 280,160 300,160" stroke-linecap="round"></path>
-    <!-- Stages link -->
-    <path class="link" d="M210,455 C260,455 280,260 300,190" stroke-linecap="round"></path>
-    <!-- Application link -->
-    <path class="link" d="M210,455 C260,455 280,330 300,320" stroke-linecap="round"></path>
-    <!-- Mentorship link -->
-    <path class="link" d="M210,455 C260,455 280,440 300,420" stroke-linecap="round"></path>
-    <!-- Funding link -->
-    <path class="link" d="M210,455 C260,455 280,510 300,520" stroke-linecap="round"></path>
-    <!-- Monitoring link -->
-    <path class="link" d="M210,455 C260,455 280,610 300,620" stroke-linecap="round"></path>
-    <!-- Academic link -->
-    <path class="link" d="M210,455 C260,455 280,710 300,720" stroke-linecap="round"></path>
-    <!-- Revocation link -->
-    <path class="link" d="M210,455 C260,455 280,810 300,820" stroke-linecap="round"></path>
+    <!-- Connect root to parent nodes with smooth curves (calculated positions) -->
+    <!-- root right edge is at x = 60 + 240 = 300 -->
+    <path class="link" d="M300 540 C330 540 330 150 360 150" />
+    <path class="link" d="M300 540 C330 540 330 220 360 220" />
+    <path class="link" d="M300 540 C330 540 330 340 360 340" />
+    <path class="link" d="M300 540 C330 540 330 440 360 440" />
+    <path class="link" d="M300 540 C330 540 330 540 360 540" />
+    <path class="link" d="M300 540 C330 540 330 640 360 640" />
+    <path class="link" d="M300 540 C330 540 330 740 360 740" />
+    <path class="link" d="M300 540 C330 540 330 840 360 840" />
 
-    <!-- Subnodes: Overview -> Central Committee -->
-    <g id="overview-sub" transform="translate(640,60)">
-      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Central Committee: approves AW, funding & revocations</text>
+    <!-- Subnodes on the right (x=860..920 area) laid out vertically and spaced -->
+    <!-- Overview -> Central Committee -->
+    <g transform="translate(900,120)">
+      <rect class="node-rect" x="0" y="-22" width="460" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Central Committee: approves AW, funding &amp; revocations</text>
     </g>
-    <path class="link" d="M640,60 L340,60" stroke-linecap="round"></path>
+    <path class="link" d="M860 150 C880 150 900 150 900 132" />
 
-    <!-- Stages subnodes -->
-    <g id="stage1" transform="translate(640,140)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Stage 1 — Idea : 2-page brief • validation • monthly reports</text>
+    <!-- Stages children -->
+    <g transform="translate(900,160)">
+      <rect class="node-rect" x="0" y="-20" width="540" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Stage 1 — Idea : 2-page brief • validation • monthly reports</text>
     </g>
-    <path class="link" d="M440,170 C520,170 580,150 640,150" stroke-linecap="round"></path>
+    <path class="link" d="M520 220 C640 200 760 180 900 180" />
 
-    <g id="stage2" transform="translate(640,200)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Stage 2 — Prototype : MVP • tech review • bi-weekly updates • prototype grants</text>
+    <g transform="translate(900,210)">
+      <rect class="node-rect" x="0" y="-20" width="540" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Stage 2 — Prototype : MVP • tech review • bi-weekly updates • prototype grants</text>
     </g>
-    <path class="link" d="M440,170 C520,200 580,200 640,200" stroke-linecap="round"></path>
+    <path class="link" d="M520 220 C640 220 760 215 900 210" />
 
-    <g id="stage3" transform="translate(640,260)">
-      <rect class="node-rect" x="0" y="-20" width="600" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Stage 3 — Building : traction (LOIs/revenue) • strict deferment • scaling grants</text>
+    <g transform="translate(900,260)">
+      <rect class="node-rect" x="0" y="-20" width="620" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Stage 3 — Building : traction (LOIs/revenue) • strict deferment • scaling grants</text>
     </g>
-    <path class="link" d="M440,170 C520,240 580,260 640,260" stroke-linecap="round"></path>
+    <path class="link" d="M520 220 C640 260 760 250 900 260" />
 
-    <!-- Application Process subnodes -->
-    <g id="app-sub1" transform="translate(640,260)">
-      <!-- empty placeholder to avoid overlap with stage3; actual subnodes below -->
+    <!-- Application Process children -->
+    <g transform="translate(900,300)">
+      <rect class="node-rect" x="0" y="-20" width="460" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Submit : brief or MVP package + evidence</text>
     </g>
-    <g id="app-subA" transform="translate(640,300)">
-      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Submit : brief or MVP package + evidence</text>
-    </g>
-    <path class="link" d="M540,300 C590,300 610,300 640,300" stroke-linecap="round"></path>
+    <path class="link" d="M720 340 C780 320 840 310 900 300" />
 
-    <g id="app-subB" transform="translate(640,340)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Evaluate : campus PoC -> central committee review</text>
-    </g>
-    <path class="link" d="M540,300 C590,330 610,340 640,340" stroke-linecap="round"></path>
-
-    <g id="app-subC" transform="translate(640,380)">
-      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Decision timing : target ≤ 10 working days</text>
-    </g>
-    <path class="link" d="M540,300 C590,360 610,380 640,380" stroke-linecap="round"></path>
-
-    <!-- Mentorship subnodes -->
-    <g id="ment-sub1" transform="translate(640,420)">
-      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Internal Ideathon : surface top teams for mentors</text>
-    </g>
-    <path class="link" d="M540,420 C590,420 610,420 640,420" stroke-linecap="round"></path>
-
-    <g id="ment-sub2" transform="translate(640,460)">
-      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Industry Mentors : live projects, check-ins, reviews</text>
-    </g>
-    <path class="link" d="M540,420 C590,450 610,460 640,460" stroke-linecap="round"></path>
-
-    <!-- Funding subnodes -->
-    <g id="fund-sub1" transform="translate(640,520)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Micro-grants : awarded at pitch-day; reporting required</text>
-    </g>
-    <path class="link" d="M540,520 C590,520 610,520 640,520" stroke-linecap="round"></path>
-
-    <g id="fund-sub2" transform="translate(640,560)">
-      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Prototype grants : conditional on milestones</text>
-    </g>
-    <path class="link" d="M540,520 C590,550 610,560 640,560" stroke-linecap="round"></path>
-
-    <g id="fund-sub3" transform="translate(640,600)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Scaling grants : monthly reports + legal/IP support</text>
-    </g>
-    <path class="link" d="M540,520 C590,580 610,600 640,600" stroke-linecap="round"></path>
-
-    <!-- Monitoring subnodes -->
-    <g id="mon-sub1" transform="translate(640,640)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Cadence : monthly / bi-weekly / quarterly (by stage)</text>
-    </g>
-    <path class="link" d="M540,620 C590,630 610,635 640,640" stroke-linecap="round"></path>
-
-    <g id="mon-sub2" transform="translate(640,680)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Example KPIs : milestones met, users/signups, revenue, retention</text>
-    </g>
-    <path class="link" d="M540,620 C590,660 610,675 640,680" stroke-linecap="round"></path>
-
-    <!-- Academic subnodes -->
-    <g id="acad-sub1" transform="translate(640,720)">
-      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Attendance Waiver (AW) : case-by-case by committee</text>
-    </g>
-    <path class="link" d="M540,720 C590,720 610,720 640,720" stroke-linecap="round"></path>
-
-    <g id="acad-sub2" transform="translate(640,760)">
-      <rect class="node-rect" x="0" y="-20" width="600" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Deferment : strict criteria; requires business plan + re-entry agreement</text>
-    </g>
-    <path class="link" d="M540,720 C590,750 610,760 640,760" stroke-linecap="round"></path>
-
-    <!-- Revocation subnodes -->
-    <g id="rev-sub1" transform="translate(640,820)">
-      <rect class="node-rect" x="0" y="-20" width="680" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Triggers : missed updates, &lt;60% milestones, financial misuse, end-sem/mid-sem failure</text>
-    </g>
-    <path class="link" d="M540,820 C590,800 610,805 640,820" stroke-linecap="round"></path>
-
-    <g id="rev-sub2" transform="translate(640,860)">
+    <g transform="translate(900,340)">
       <rect class="node-rect" x="0" y="-20" width="540" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
-      <text class="sub-text" x="14" y="0">Remedies : revoke benefits, require reinstatement steps</text>
+      <text class="node-sub" x="16" y="0">Evaluate : campus PoC -&gt; central committee review</text>
     </g>
-    <path class="link" d="M540,820 C590,840 610,850 640,860" stroke-linecap="round"></path>
+    <path class="link" d="M720 340 C780 340 840 340 900 340" />
+
+    <g transform="translate(900,380)">
+      <rect class="node-rect" x="0" y="-20" width="420" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Decision timing : target ≤ 10 working days</text>
+    </g>
+    <path class="link" d="M720 340 C780 360 840 370 900 380" />
+
+    <!-- Mentorship children -->
+    <g transform="translate(900,420)">
+      <rect class="node-rect" x="0" y="-20" width="460" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Internal Ideathon : surface top teams for mentors</text>
+    </g>
+    <path class="link" d="M720 440 C780 440 840 440 900 420" />
+
+    <g transform="translate(900,460)">
+      <rect class="node-rect" x="0" y="-20" width="460" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Industry Mentors : live projects, check-ins, reviews</text>
+    </g>
+    <path class="link" d="M720 440 C780 460 840 470 900 460" />
+
+    <!-- Funding children -->
+    <g transform="translate(900,520)">
+      <rect class="node-rect" x="0" y="-20" width="560" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Micro-grants : awarded at pitch-day; reporting required</text>
+    </g>
+    <path class="link" d="M720 540 C780 540 840 540 900 520" />
+
+    <g transform="translate(900,560)">
+      <rect class="node-rect" x="0" y="-20" width="460" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Prototype grants : conditional on milestones</text>
+    </g>
+    <path class="link" d="M720 540 C780 560 840 560 900 560" />
+
+    <g transform="translate(900,600)">
+      <rect class="node-rect" x="0" y="-20" width="560" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Scaling grants : monthly reports + legal/IP support</text>
+    </g>
+    <path class="link" d="M720 540 C780 590 840 600 900 600" />
+
+    <!-- Monitoring children -->
+    <g transform="translate(900,660)">
+      <rect class="node-rect" x="0" y="-20" width="560" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Cadence : monthly / bi-weekly / quarterly (by stage)</text>
+    </g>
+    <path class="link" d="M780 640 C820 650 860 655 900 660" />
+
+    <g transform="translate(900,700)">
+      <rect class="node-rect" x="0" y="-20" width="560" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Example KPIs : milestones met, users/signups, revenue, retention</text>
+    </g>
+    <path class="link" d="M780 640 C820 680 860 690 900 700" />
+
+    <!-- Academic children -->
+    <g transform="translate(900,740)">
+      <rect class="node-rect" x="0" y="-20" width="560" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Attendance Waiver (AW) : case-by-case by committee</text>
+    </g>
+    <path class="link" d="M780 740 C820 740 860 740 900 740" />
+
+    <g transform="translate(900,780)">
+      <rect class="node-rect" x="0" y="-20" width="620" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Deferment : strict criteria; requires business plan + re-entry agreement</text>
+    </g>
+    <path class="link" d="M780 740 C820 770 860 780 900 780" />
+
+    <!-- Revocation children -->
+    <g transform="translate(900,820)">
+      <rect class="node-rect" x="0" y="-20" width="700" height="44" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Triggers : missed updates, &lt;60% milestones, financial misuse, end-sem/mid-sem failure</text>
+    </g>
+    <path class="link" d="M780 820 C820 800 860 805 900 820" />
+
+    <g transform="translate(900,870)">
+      <rect class="node-rect" x="0" y="-20" width="520" height="40" rx="12" ry="12" filter="url(#shadow)"></rect>
+      <text class="node-sub" x="16" y="0">Remedies : revoke benefits, require reinstatement steps</text>
+    </g>
+    <path class="link" d="M780 820 C820 840 860 860 900 870" />
 
   </svg>
 </div>

@@ -3,64 +3,36 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Interactive Mindmap — Entrepreneurship Policy Plan</title>
-
-<!-- D3.js v7 -->
+<title>Entrepreneurship Policy Mindmap — NST</title>
 <script src="https://d3js.org/d3.v7.min.js"></script>
-
 <style>
   :root{
-    --bg:#f7fafc;
-    --card:#ffffff;
-    --muted:#6b7280;
-    --accent:#0f172a;
-    --accent-2:#0ea5a4;
-    --stage-1:#fef3c7;
-    --stage-2:#e0f2fe;
-    --stage-3:#ecfdf5;
+    --bg:#f7fafc; --card:#fff; --muted:#6b7280; --accent:#0f172a; --accent-2:#0ea5a4;
+    --stage1:#fff7ed; --stage2:#eff6ff; --stage3:#ecfdf5;
   }
-  html,body {height:100%; margin:0; font-family:Inter, system-ui, Arial, sans-serif; background:var(--bg); color:var(--accent);}
-  .app {
-    display:flex; height:100vh; gap:12px;
-    padding:14px;
-    box-sizing:border-box;
-  }
-  /* left: svg area, right: control panel */
-  .canvas {
-    flex:1 1 auto; background: linear-gradient(180deg,#fbfdff 0%, #f7fafc 100%); border-radius:12px; box-shadow: 0 6px 18px rgba(12,24,40,.06); padding:8px;
-    overflow:hidden; position:relative;
-  }
-  svg { width:100%; height:100%; display:block; }
-  .controls {
-    width:380px; max-width:42%;
-    flex:0 0 380px; background:var(--card); border-radius:12px; padding:14px; box-shadow: 0 8px 30px rgba(8,20,40,0.06); overflow:auto;
-  }
+  html,body{height:100%; margin:0; font-family:Inter, system-ui, Arial, sans-serif; background:var(--bg); color:var(--accent);}
+  .app{display:flex; height:100vh; gap:12px; padding:14px; box-sizing:border-box;}
+  .canvas{flex:1 1 auto; background:linear-gradient(180deg,#fbfdff 0%, #f7fafc 100%); border-radius:12px; box-shadow:0 6px 18px rgba(12,24,40,.06); padding:8px; overflow:hidden; position:relative;}
+  svg{width:100%; height:100%; display:block; }
+  .controls{width:380px; flex:0 0 380px; background:var(--card); border-radius:12px; padding:14px; box-shadow:0 8px 30px rgba(8,20,40,0.06); overflow:auto;}
   h2{margin:2px 0 8px 0; font-size:16px;}
-  .btn {display:inline-block; padding:8px 10px; border-radius:8px; margin:6px 6px 6px 0; cursor:pointer; border:1px solid rgba(15,23,42,0.06); background:#fff; font-size:13px;}
-  .btn.primary {background:var(--accent-2); color:white; border: none;}
-  .search {width:100%; padding:8px 10px; border-radius:8px; border:1px solid #e6edf0; margin-bottom:10px;}
-  .legend {font-size:13px; color:var(--muted)}
-  .node-rect { fill: #fff; stroke: #e6edf0; stroke-width:1; rx:10; filter: drop-shadow(0 6px 18px rgba(2,6,23,0.06)); }
-  .node-text { font-size:13px; pointer-events:none; }
-  .node-title { font-weight:700; font-size:13px; fill: var(--accent); }
-  .node-sub { font-size:12px; fill:var(--muted); }
-  .link { fill:none; stroke:#cbd5e1; stroke-width:2; }
-  .highlight { stroke: #0ea5a4 !important; stroke-width:3px !important; }
-  .sidebar { margin-top:10px; font-size:14px; color:#111827; }
-  .meta { font-size:13px; color:var(--muted); margin-top:6px; white-space:pre-wrap; }
-  .small { font-size:12px; color:var(--muted); margin-top:8px; }
-  .badge { display:inline-block; padding:4px 8px; font-size:12px; border-radius:999px; margin-left:8px; background:#f1f5f9; color:#0f172a; }
-  .footer { font-size:12px; color:var(--muted); margin-top:12px; }
-  a.inline { color:var(--accent-2); text-decoration:none; }
-  .controls hr { border:0; border-top:1px solid #eef2f7; margin:12px 0; }
-  .toggle { cursor:pointer; color:var(--accent-2); text-decoration:underline; font-size:13px; margin-left:6px; }
-  .download { float:right; margin-top:-6px; }
-  /* responsive */
-  @media (max-width:900px){
-    .app {flex-direction:column;}
-    .controls {width:100%; max-width:100%; order:2; height:360px;}
-    .canvas {order:1; height:60vh;}
-  }
+  .btn{display:inline-block; padding:8px 10px; border-radius:8px; margin:6px 6px 6px 0; cursor:pointer; border:1px solid rgba(15,23,42,0.06); background:#fff; font-size:13px;}
+  .btn.primary{background:var(--accent-2); color:white; border:none;}
+  .search{width:100%; padding:8px 10px; border-radius:8px; border:1px solid #e6edf0; margin-bottom:10px;}
+  .small{font-size:12px; color:var(--muted); margin-top:8px;}
+  .node-rect{fill:#fff; stroke:#e6edf0; stroke-width:1; rx:10; filter:drop-shadow(0 6px 18px rgba(2,6,23,0.06));}
+  .node-title{font-weight:700; font-size:13px; fill:var(--accent);}
+  .node-sub{font-size:12px; fill:var(--muted);}
+  .link{fill:none; stroke:#cbd5e1; stroke-width:2;}
+  .highlight{stroke:var(--accent-2) !important; stroke-width:3px !important;}
+  .sidebar{margin-top:10px; font-size:14px; color:#111827;}
+  .meta{font-size:13px; color:var(--muted); margin-top:6px; white-space:pre-wrap;}
+  .badge{display:inline-block; padding:4px 8px; font-size:12px; border-radius:999px; margin-left:8px; background:#f1f5f9; color:#0f172a;}
+  .footer{font-size:12px; color:var(--muted); margin-top:12px;}
+  .toggle{cursor:pointer; color:var(--accent-2); text-decoration:underline; font-size:13px; margin-left:6px;}
+  .field-list{margin:8px 0; padding-left:16px; color:#111827;}
+  .field-list li{margin-bottom:6px;}
+  @media (max-width:900px){.app{flex-direction:column;} .controls{width:100%; order:2; height:360px;} .canvas{order:1; height:60vh;}}
 </style>
 </head>
 <body>
@@ -82,346 +54,302 @@
       <button class="btn primary" id="fitView">Fit view</button>
     </div>
 
-    <div class="small">Tip: drag to pan, scroll (or pinch) to zoom, click nodes to expand/collapse, double-click to pin details, or use search to jump to a node.</div>
-
-    <div style="margin-top:12px;">
-      <div class="legend"><strong>Legend</strong></div>
-      <div class="small">• Stage color badges shown in details • Click a node to toggle children • Use Download to export JSON</div>
-    </div>
+    <div class="small">Tip: drag to pan, scroll (or pinch) to zoom, click nodes to expand/collapse. Double-click a node to pin the details pane.</div>
 
     <div class="sidebar" id="sidebar">
       <div style="font-weight:700;">Node details</div>
       <div id="nodeTitle" style="margin-top:8px; font-size:15px; font-weight:600;">(click a node)</div>
-      <div id="nodeMeta" class="meta">Select a node to view notes, suggested actions, or owner.</div>
-      <div id="nodeExtras" class="small"></div>
-      <div style="margin-top:10px;">
-        <span id="readToggle" class="toggle" style="display:none">Read more</span>
-      </div>
+      <div id="nodeMeta" class="meta">Select a node to view short summary, KPIs and suggested next actions. Use "Read more" to expand full notes.</div>
+      <div id="nodeFields" style="margin-top:8px;"></div>
+      <div id="readToggle" class="toggle" style="display:none">Read more</div>
     </div>
 
     <hr />
-    <div class="small">Data & sources: Policy Plan (stages, eligibility, monitoring, revocation rules) extracted and summarised from uploaded documents. See attached files in repo for full policy text. :contentReference[oaicite:2]{index=2} :contentReference[oaicite:3]{index=3}</div>
-
-    <div class="footer">Edit the data inside <code>treeData</code> in the script to customise the map. Built for stakeholder-friendly presentations.</div>
+    <div class="small">Sources: policy files uploaded to this workspace. Use the Download JSON button to export the tree data to share. :contentReference[oaicite:2]{index=2} :contentReference[oaicite:3]{index=3}</div>
   </div>
 </div>
 
 <script>
 /* -------------------------
-  DETAILED DATA (edit here)
-  This is the expanded, stakeholder-friendly policy structure.
-  Each node may contain:
-   - label: visible on node
-   - title: shown in side panel
-   - notes: long description
-   - owner: responsible person
-   - stage: optional tag "Stage 1/2/3" (visual)
-   - children: nested nodes
+  Expanded, stakeholder-friendly data
+  Each node includes:
+   - label, title
+   - summary: short 1-2 sentence summary
+   - notes: long detailed notes (hidden by default)
+   - owner, stage, kpis (array), cadence, actions (array), resources (array of {label,url})
 ---------------------------*/
 const treeData = {
-  "label": "NST Entrepreneurship Policy Plan",
-  "title": "NST Entrepreneurship Policy Plan — Overview",
-  "notes": "A stage-based policy for student entrepreneurship mapping support to team maturity. This mindmap summarises objectives, eligibility, submission requirements, evaluation steps, monitoring cadence, KPIs, revocation rules, deferment and academic benefits, and support mechanisms (mentorship, grants, legal).",
-  "children": [
+  label: "NST Entrepreneurship Policy Plan",
+  title: "Overview — Stage-based entrepreneurship policy",
+  summary: "Stage-based policy mapping supports & benefits to team maturity. Central committee approves academic benefits, funding, and deferments.",
+  notes: `This policy divides support into three stages—Idea, Prototype, Building—and defines eligibility, submissions, evaluation paths, KPIs, monitoring cadence, academic benefits (Attendance Waiver and Deferment), funding rules, mentor roles, revocation triggers, and templates. All academic benefits and funding decisions are subject to Central Committee approval. (summarised from uploaded policy documents).`,
+  kpis: ["Policy completeness", "Clarity for applicants", "Monitoring cadence set"],
+  cadence: "Central Committee review every 6–8 weeks",
+  resources: [{label:"Policy PDF (source)", url:"#"}],
+  children: [
     {
-      "label": "Definitions & Central Committee",
-      "title": "Definitions & Central Committee",
-      "notes": "Definitions: Central Committee = campus team + central team + external members. AW = Attendance Waiver. 'Case-by-case' refers to Central Committee decisions. The Central Committee approves all benefits, AW, deferment, and funding.",
-      "children":[
-        {"label":"Central Committee Role","title":"Role of Central Committee","notes":"Approves stage admissions, AW, deferments, funding; performs reviews every 6-8 weeks; provides final revocation decisions.","owner":"Program Lead"},
-        {"label":"Definitions","title":"Key definitions","notes":"Clarifies terms used across policy (AW, PoC, LOI, MVP, micro-grants, deferment)."},
-        {"label":"Contact Points","title":"Contact & owners","notes":"Program Lead: (name/email), Campus Co-ordinators: list, Mentor Liaison: (name). Use this node to store owner contacts and meeting cadence."}
+      label:"Definitions & Central Committee",
+      title:"Definitions & Central Committee",
+      summary:"Defines Core terms (Central Committee, AW) and responsibility matrix.",
+      notes:`Central Committee = campus + central + external experts. Responsible for approving AW, deferments, funding, and revocation decisions. Meeting cadence, membership rules, and quorum rules must be defined in committee charter. Use committee templates and a one-page charter for onboarding external members.`,
+      owner:"Program Lead",
+      kpis:["Committee charter published","Decision log maintained"],
+      cadence:"Meeting every 6 weeks / decision log weekly updates",
+      actions:["Publish committee roster; create decision-log spreadsheet; schedule quarterly external review"],
+      resources:[{label:"Committee charter (sample)", url:"#"}]
+    },
+
+    {
+      label:"Application Process (Overview)",
+      title:"Application process — 4 step flow",
+      summary:"Apply -> Submit proof -> Evaluate -> Post-approval monitoring.",
+      notes:`Step 1: Students apply to a specific Stage using the 2-page brief or MVP package depending on stage.
+Step 2: Campus coordinator verifies academic eligibility if AW/deferment requested.
+Step 3: Central Committee + technical reviewers evaluate submission.
+Step 4: Approved teams follow the monitoring cadence; benefits are revoked if KPIs are not met.`,
+      kpis:["Time-to-decision <= 10 working days", "Checklist completeness"],
+      cadence:"Decision within 10 working days (target); monitoring as per stage",
+      actions:["Add application form link; add submission checklist; create auto-email template"]
+    },
+
+    {
+      label:"Stage 1 — Idea",
+      title:"Stage 1: Idea — Problem discovery & validation",
+      stage:"Stage 1",
+      summary:"Low-risk validation: 2-page brief + campus PoC endorsement. No academic AW by default.",
+      notes:`Objective: help students validate problem & early user discovery.
+Eligibility: Any enrolled student.
+Submission: 2-page idea brief (problem, ICP, validation plan, early interviews).
+Evaluation: Campus PoC endorsement.
+Support: Mentorship (internal), pitch-day slots, community events. Micro-grants possible after pitch-day in subsequent rounds.
+Monitoring: Monthly progress reports (short form).
+Revocation: N/A for AW (no academic benefits at this stage).`,
+      kpis:["Customer interviews completed (>=10)","Problem hypotheses tested"],
+      cadence:"Monthly progress report",
+      owner:"Campus PoC",
+      actions:["Submit 2-page brief; book campus PoC review; register for pitch-day"],
+      resources:[
+        {label:"2-page brief template", url:"#"},
+        {label:"Pitch-day scoring rubric (sample)", url:"#"}
+      ],
+      children:[
+        { label:"Eligibility", title:"Eligibility (Stage 1)", summary:"Any enrolled student across campuses.", notes:"No academic preconditions required for Stage 1." },
+        { label:"Submission", title:"Submission — 2-page brief", summary:"Problem statement, target customer, validation plan, early interviews.", notes:"Attach interview notes, screengrabs or forms." },
+        { label:"Evaluation & Support", title:"Evaluation & Support", summary:"Campus PoC approves for mentorship & pitch slot.", notes:"PoC assigns mentor and schedules first check-in." },
+        { label:"Monitoring & KPIs", title:"Monitoring & KPIs", summary:"Monthly validation progress; basic milestone tracker.", notes:"Use the Idea milestone template to report progress." },
+        { label:"Revocation rules", title:"Revocation rules", summary:"No AW at Stage 1; mentorship continues even if KPIs not met.", notes:"Teams can re-apply next cycle." }
       ]
     },
 
     {
-      "label": "Overall Application Process",
-      "title": "How to apply (overview)",
-      "notes": "1) Students apply to a specific Stage. 2) Submit required proof for that Stage. 3) Central committee evaluates. 4) If approved, teams follow KPI cadence and mentoring plan. 5) Benefits may be revoked if KPIs/updates are not met.",
-      "children":[
-        {"label":"Step 1: Prepare submission","title":"Prepare submission","notes":"Collect required documents (2-page brief for Stage 1; MVP/demo, milestone plan, mentor endorsement for Stage 2/3)."},
-        {"label":"Step 2: Submit & confirm","title":"Submission & checks","notes":"Campus coordinator verifies academic eligibility (only if AW/deferment required)."},
-        {"label":"Step 3: Evaluation","title":"Evaluation mechanism","notes":"Stage 1: campus PoC endorsement. Stage 2: central committee + technical code review. Stage 3: central committee + external experts & KPI checks."},
-        {"label":"Step 4: Post-approval","title":"Monitoring & Benefits","notes":"Teams must submit progress reports per monitoring cadence (monthly/bi-weekly/quarterly) to retain benefits."}
+      label:"Stage 2 — Prototype",
+      title:"Stage 2: Prototype — MVP development",
+      stage:"Stage 2",
+      summary:"MVP development with technical review; AW/deferment considered case-by-case.",
+      notes:`Objective: support building an MVP and technical feasibility.
+Eligibility: Stage 1 eligible OR direct applicants who meet Stage 2 criteria (passed courses if asking for AW).
+Submission: milestone plan, wireframes, demo or code repo, mentor endorsement. If a ready MVP, include metrics (users/signups) and roles.
+Evaluation: Central Committee + technical code review + external mentors.
+Support: Platform credits, prototype grants, dedicated mentor with bi-weekly check-ins.
+Monitoring & KPIs: Bi-weekly updates; monthly external mentor sign-offs; committee review every 6–8 weeks. KPIs include milestone adherence, prototype feasibility, initial user feedback.`,
+      kpis:["Milestones met (%)","Prototype demo working","User onboarding evidence"],
+      cadence:"Bi-weekly updates; monthly mentor sign-offs",
+      owner:"Technical Lead / Mentor Liaison",
+      actions:["Link repo & demo; schedule technical review; request platform credits"],
+      resources:[
+        {label:"MVP milestone template", url:"#"},
+        {label:"Code review checklist", url:"#"}
+      ],
+      children:[
+        { label:"Eligibility", title:"Eligibility (Stage 2)", summary:"Stage 1 eligible or direct Stage 2 applicants. Pass coursework if applying for AW.", notes:"Academic eligibility only necessary when requesting AW/deferment." },
+        { label:"Submission", title:"Submission requirements", summary:"Problem + prototype plan; milestones; demo/wireframes; mentor endorsement.", notes:"If existing MVP: attach demo, production deployment proof; optionally investor interest." },
+        { label:"Evaluation", title:"Evaluation mechanism", summary:"Central committee + technical reviewers.", notes:"Technical code review uses the code review checklist; external mentors score platform fit during pitch-day." },
+        { label:"Support & benefits", title:"Support provided", summary:"Prototype grants, credits, mentorship; AW case-by-case.", notes:"Micro-grants allocated based on mentor scores on pitch-day." },
+        { label:"KPIs & monitoring", title:"KPIs & monitoring", summary:"Milestone adherence, feasibility, market fit.", notes:"Monitoring: bi-weekly updates + monthly sign-off." },
+        { label:"Academic benefits & deferment", title:"AW & deferment", summary:"AW/deferment decided by Central Committee on case-by-case basis.", notes:"Deferment requires stronger evidence (investor interest/traction)."},
+        { label:"Revocation", title:"Revocation triggers", summary:"Missed updates or <60% milestone adherence may revoke AW & funds.", notes:"Financial misuse revokes funding immediately."}
       ]
     },
 
     {
-      "label": "Stage 1 — Idea",
-      "title": "Stage 1: Idea — Problem discovery & validation",
-      "stage":"Stage 1",
-      "notes": "Objective: low-risk support to discover & validate problem and founder mindset. Expected outcome: problem discovery/early validation. Mentorship (internal). Monthly progress reports required. Attendance Waiver: none.",
-      "children":[
-        {"label":"Eligibility","title":"Eligibility (Stage 1)","notes":"Any enrolled student from any academic year across NST campuses."},
-        {"label":"Submission","title":"Submission: 2-page idea brief","notes":"Brief should include problem definition, target customer, validation plan and evidence of early customer discovery."},
-        {"label":"Evaluation & Support","title":"Evaluation & support (Stage 1)","notes":"On-ground campus PoC endorsement. Support: internship semester chance, community events, NST mentor mapping, pitch-day slots. Eligible for micro-grants after pitch day (in later stages)."},
-        {"label":"Monitoring & KPIs","title":"Monitoring cadence & KPIs","notes":"Monthly progress reports; KPIs: validation milestone adherence; external feedback; pivot/next-step decision points."},
-        {"label":"Revocation rules","title":"Revocation & reinstatement","notes":"NA (no academic benefits). Teams can still receive general mentorship even if not meeting expectations."}
+      label:"Stage 3 — Building (MVP+ / Early Revenue)",
+      title:"Stage 3: Building — Market readiness & traction",
+      stage:"Stage 3",
+      summary:"Scaling-ready teams with LOIs/revenue get stricter deferment rules & scaling grants.",
+      notes:`Objective: support validated prototypes to scale & reach product-market fit.
+Eligibility: MVP + at least one of LOI / revenue / signups; passed relevant coursework if applying for AW.
+Submission: architecture & security checklist, quarterly milestone plan, traction evidence (LOIs, revenue, signups).
+Evaluation: Central Committee + external experts. Legal & IP support possible.
+Support: Scaling grants, government grant assistance, legal & IP help, monthly mentor sign-offs.
+Monitoring & KPIs: Bi-weekly KPI checks, monthly mentor sign-offs, quarterly milestone review.`,
+      kpis:["Signups, conversions, early revenue","Retention metrics","Quarterly milestone completion"],
+      cadence:"Bi-weekly KPI checks; quarterly milestone review",
+      owner:"Scaling PoC + External Mentor",
+      actions:["Submit growth plan; request scaling grant review; attach LOIs/revenue proof"],
+      resources:[
+        {label:"Deferment form & checklist", url:"#"},
+        {label:"Scaling grant application template", url:"#"}
+      ],
+      children:[
+        { label:"Eligibility & submission", title:"Eligibility & submission (Stage 3)", summary:"MVP + LOI/revenue/signups + deployment checklist.", notes:"Attach tests, architecture docs, security notes and user evidence." },
+        { label:"Evaluation", title:"Evaluation (Stage 3)", summary:"Central committee + external experts", notes:"External reviewers focus on traction & scalability." },
+        { label:"Support & grants", title:"Support provided (Stage 3)", summary:"Scaling grants, legal, IP support", notes:"Requires monthly sign-offs and spending reports." },
+        { label:"KPIs & cadence", title:"KPIs & monitoring (Stage 3)", summary:"Traction KPIs and quarterly milestones", notes:"Use the KPI dashboard to track weekly metrics." },
+        { label:"Deferment rules", title:"Deferment & re-entry rules", summary:"Deferment allowed but strict (Sem 3/5/7 only).", notes:"Needs business plan, projections, LOIs, re-entry plan; reinstatement returns to same semester." },
+        { label:"Revocation & reinstatement", title:"Revocation rules", summary:"Same triggers as prior stages; end-sem failures block AW & deferment.", notes:"Financial misuse or exam failure revokes all benefits." }
       ]
     },
 
     {
-      "label": "Stage 2 — Prototype",
-      "title": "Stage 2: Prototype — MVP development / prototyping",
-      "stage":"Stage 2",
-      "notes": "Objective: support MVP building and technical feasibility. Expected outcome: working prototype with milestone plan. Academic benefits (AW, deferment) considered case-by-case. Monitoring: bi-weekly updates + monthly external sign-offs.",
-      "children":[
-        {"label":"Eligibility","title":"Eligibility (Stage 2)","notes":"Stage 1 eligibility plus 'passed all courses' if AW/deferment requested. Academic eligibility only required if benefits requested."},
-        {"label":"Submission","title":"Submission requirements","notes":"If building: problem & prototype plan, milestone plan, demo/wireframes, mentor endorsement. If existing MVP: demo, milestones, roles, user evidence; investor interest is optional but beneficial."},
-        {"label":"Evaluation","title":"Evaluation mechanism (Stage 2)","notes":"Central committee + technical code review. External mentors evaluate prototype feasibility."},
-        {"label":"Support & benefits","title":"Support provided","notes":"Platform credits, prototype grants, external mentors, AW/workspace (campus-dependent). Dedicated mentor with bi-weekly check-ins."},
-        {"label":"KPIs & monitoring","title":"KPIs & monitoring (Stage 2)","notes":"Milestone adherence, prototype feasibility, market fit, novelty, scalability. Monitoring: bi-weekly updates, monthly external mentor sign-offs, committee review every 6-8 weeks."},
-        {"label":"Academic benefits & deferment","title":"AW & deferment (Stage 2)","notes":"AW decided case-by-case by Central Committee. Deferment considered case-by-case, generally when there is investor interest or stage progression to Stage 3 rules."},
-        {"label":"Revocation","title":"Revocation triggers (Stage 2)","notes":"Missed updates (2), <60% milestone adherence, failed in contests or end/mid-sem exams — may cause AW/funding revocation. Financial misuse or exam failure leads to benefit revocation."}
+      label:"Operational Rules & Tools",
+      title:"Operational rules, templates & dashboard",
+      summary:"Templates, rubric, and monitoring dashboard to make selection repeatable.",
+      notes:`Includes templates: 2-page brief, MVP milestone template, deferment form, AW checklist; assessment rubric used for pitch-day; monitoring dashboard fields and views for committee reviews.`,
+      kpis:["Templates published","Dashboard active"],
+      cadence:"Dashboard updated weekly",
+      actions:["Publish templates in shared drive; link monitoring dashboard to committee calendar"],
+      resources:[
+        {label:"Templates pack (sample)", url:"#"},
+        {label:"Monitoring dashboard template", url:"#"}
       ]
     },
 
     {
-      "label": "Stage 3 — Building (MVP+ / Early Revenue)",
-      "title": "Stage 3: Building — Market readiness & traction",
-      "stage":"Stage 3",
-      "notes": "Objective: support validated prototypes to real users, LOIs, revenue. Eligibility: MVP + at least one of LOI/revenue/signups; checklist includes architecture, security, tests & scalability plan. Deferment eligibility strict and limited to certain semesters.",
-      "children":[
-        {"label":"Eligibility & submission","title":"Eligibility & submission (Stage 3)","notes":"MVP + LOI/revenue/signups; quarter milestone plan; deployment & scalability plan; proof of user base and any revenue. Academic eligibility required for AW/deferment."},
-        {"label":"Evaluation","title":"Evaluation (Stage 3)","notes":"Central committee + external expert review; KPI-driven guidance; possible legal & IP registration support."},
-        {"label":"Support & grants","title":"Support provided (Stage 3)","notes":"Scaling grants, government grant assistance, legal & IP support, workspace & mentor signoffs. Monthly mentor sign-offs and biweekly KPI checks."},
-        {"label":"KPIs & cadence","title":"KPIs & monitoring (Stage 3)","notes":"Traction KPIs: signups, conversions, revenue, retention; quarterly milestones. Monitoring: bi-weekly updates, quarterly milestone review, monthly mentor sign-offs."},
-        {"label":"Deferment rules","title":"Deferment eligibility & requirements","notes":"Yes — strict. Only allowed in Sem 3/5/7 (not Year 1). Requires deferment form, re-entry agreement, business plan, projections, LOIs/signups/revenue, endorsements, and re-entry plan."},
-        {"label":"Revocation & reinstatement","title":"Revocation & reinstatement","notes":"Same triggers as previous stages. Deferment denied if exam failures. Reinstatement returns student to same year/semester as specified in deferment form."}
-      ]
+      label:"Funding & Grants",
+      title:"Funding & grants — micro & scaling",
+      summary:"Micro-grants at pitch day; prototype grants at Stage 2; scaling grants & IP help at Stage 3.",
+      notes:`Micro-grants require reporting & mentor scoring; prototype grants are conditional on milestone adherence. Scaling grants require usage reports and quarterly reviews. Misuse leads to revocation.`,
+      kpis:["Funds disbursed with receipts","Quarterly fund usage report"],
+      cadence:"Fund reporting monthly",
+      actions:["Request micro-grant review; submit receipts for platform credits"]
     },
 
     {
-      "label": "Operational Rules & Tools",
-      "title": "Operational Rules, Templates & Tools",
-      "notes": "Templates, assessment rubric, monitoring spreadsheet, and operations playbook for repeatable selection and resource allocation.",
-      "children":[
-        {"label":"Templates & Forms","title":"Templates: brief, MVP checklist, deferment form","notes":"Include 2-page idea brief template, MVP milestone template, deferment application template, and AW checklist."},
-        {"label":"Assessment Rubric","title":"Assessment & scoring rubric","notes":"Scoring for pitch-day: technical feasibility (30%), market fit (25%), team & execution (25%), traction evidence (20%). External mentor ratings feed into micro-grant decisions."},
-        {"label":"Monitoring Dashboard","title":"Monitoring & KPI dashboard","notes":"Suggested fields: team, stage, last update, %milestones met, mentor signoff, next milestone date, AW status, funding status. Use for Central Committee reviews."},
-        {"label":"Academic Coordination","title":"Coordinate with academics","notes":"Campus coordinators verify coursework and exam status before AW/deferment approval. Students must not be in Year 1 for strict deferment."}
-      ]
+      label:"Mentorship & Industry Immersion",
+      title:"Mentorship, ideathon & immersions",
+      summary:"Mentor pool + internal ideathon to surface teams for mentor pairing and grants.",
+      notes:`Mentors handle bi-weekly/ monthly check-ins. Internal ideathon selects top teams for mentor-led entrepreneurship track. Industry immersion, hackathons and live projects are used to give teams real-world exposure.`,
+      kpis:["Mentor check-ins logged","Top 3 ideathon teams selected per cycle"],
+      cadence:"Mentor check-ins bi-weekly",
+      actions:["Request mentor pairing; register for next ideathon"]
     },
 
     {
-      "label": "Funding & Grants",
-      "title": "Funding & Grants — micro & scaling",
-      "notes": "Micro-grants at pitch day; prototype grants for Stage 2; scaling grants & govt assistance for Stage 3. Financial disbursement and reporting rules apply; misuse leads to revocation.",
-      "children":[
-        {"label":"Micro-grants","title":"Micro-grants (pitch day)","notes":"Awarded based on mentor scoring & committee approval; reporting required for fund usage."},
-        {"label":"Prototype grants","title":"Prototype grants (Stage 2)","notes":"Credits for cloud/platforms, prototype development grants; conditional on milestone adherence."},
-        {"label":"Scaling grants","title":"Scaling & govt assistance (Stage 3)","notes":"Larger grants, legal & IP assistance; require quarterly milestone adherence and proof of traction."}
-      ]
-    },
-
-    {
-      "label": "Mentorship & Industry Immersion",
-      "title": "Mentorship, immersion & ideathon",
-      "notes": "Mentors provide technical & business guidance. Industry immersions, hackathons, and internal ideathon help surface high-quality teams for mentor pairing.",
-      "children":[
-        {"label":"Internal Ideathon","title":"Internal Ideathon","notes":"Pathway to secure mentorship. Top teams selected for mentorship & micro-grants."},
-        {"label":"Industry Mentors","title":"Industry mentors & activities","notes":"Mentors do video announcements, campus immersions, live projects; mentor responsibilities include bi-weekly check-ins and scoring during pitch-days."},
-        {"label":"Hackathons & Live Projects","title":"Hackathons & live projects","notes":"Run hackathons to accelerate prototype development; live projects connect teams to real business problems and mentor evaluations."}
-      ]
-    },
-
-    {
-      "label": "Examples, FAQs & Quick Actions",
-      "title": "Example submissions, FAQs & quick actions",
-      "notes": "Example idea brief, example MVP milestone plan, FAQ for AW/deferment. Quick actions include 'Request mentor', 'Request platform credits', 'Submit update'.",
-      "children":[
-        {"label":"Sample briefs","title":"Sample 2-page brief","notes":"Link to sample brief and checklist - ensure problem statement, ICP, validation plan included."},
-        {"label":"FAQ","title":"FAQ: AW, deferment, funding","notes":"Short Q&A for common questions like 'When is AW granted?' and 'What happens on exam failure?'."},
-        {"label":"Quick actions","title":"Quick actions & links","notes":"Buttons or links stakeholders can use: Submit update, Request AW, Request funding review (these are placeholders for workflow integration)."}
-      ]
+      label:"Examples, FAQ & Quick Actions",
+      title:"Examples, FAQ & Quick Actions",
+      summary:"Sample briefs, sample KPI dashboards, FAQ for AW/deferment and quick workflow actions.",
+      notes:`Includes sample 2-page brief, MVP templates, FAQ (When is AW granted? What triggers revocation?). Quick actions: submit update, request mentor, request AW evaluation.`,
+      actions:["Download samples; run a mock submission with campus PoC"]
     }
+
   ]
 };
 
 /* -------------------------
-    Core visualization (based on your sample but enhanced)
+  Visualization configuration
 ---------------------------*/
-
 const svg = d3.select("#svg");
-const canvasEl = document.getElementById('canvas');
-const width = canvasEl.clientWidth;
-const height = canvasEl.clientHeight;
-
+const canvas = document.getElementById('canvas');
+const width = canvas.clientWidth;
+const height = canvas.clientHeight;
 const g = svg.append("g").attr("transform","translate(20,20)");
 
-// We'll keep a global root so expand/collapse works
-let root = d3.hierarchy(treeData);
-root.x0 = height / 2;
-root.y0 = 0;
+// Tree layout settings: larger spacing to reduce overlap and orthogonal (elbow) links
+const nodeV = 110;      // vertical spacing
+const nodeH = 280;      // horizontal spacing
+const tree = d3.tree().nodeSize([nodeV, nodeH]).separation((a,b) => (a.parent == b.parent ? 1 : 1.6));
 
-// collapse nodes initially except top two levels
-if (root.children) {
-  root.children.forEach(d => { if (d.children) d.children.forEach(collapse); });
+let root = d3.hierarchy(treeData);
+root.x0 = height/2; root.y0 = 0;
+
+// collapse deeper nodes (show only top-level & stage nodes)
+if(root.children){
+  root.children.forEach((c,i)=>{
+    if(c.children) {
+      // collapse children of stage nodes for clarity
+      c.children.forEach(d=> collapse(d));
+    }
+  });
 }
 
 const duration = 320;
-const nodeWidth = 280;
-const nodeHSpacing = 240;
-const nodeVSpacing = 90;
-const treeLayout = d3.tree().nodeSize([nodeVSpacing, nodeHSpacing]);
+const nodeWidth = 320;
 
-// zoom & pan
-const zoom = d3.zoom().scaleExtent([0.25, 3])
-  .on("zoom", (event) => { g.attr("transform", event.transform); });
-
+const zoom = d3.zoom().scaleExtent([0.25, 3]).on("zoom", (e)=> g.attr("transform", e.transform));
 svg.call(zoom);
-
-// draw initial
-update(root);
 
 // UI bindings
 document.getElementById('fitView').addEventListener('click', fitToView);
 document.getElementById('expandAll').addEventListener('click', ()=>{ expandAll(root); update(root); });
 document.getElementById('collapseAll').addEventListener('click', ()=>{ collapseAll(root); update(root); });
 document.getElementById('downloadJson').addEventListener('click', ()=> {
-  const content = JSON.stringify(treeData, null, 2);
-  const blob = new Blob([content], {type: 'application/json'});
+  const blob = new Blob([JSON.stringify(treeData, null, 2)], {type:'application/json'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'mindmap-data.json'; a.click();
-  URL.revokeObjectURL(url);
+  const a = document.createElement('a'); a.href=url; a.download='mindmap-data.json'; a.click(); URL.revokeObjectURL(url);
+});
+document.getElementById('search').addEventListener('keydown',(e)=>{
+  if(e.key==='Enter'){ const q=e.target.value.trim().toLowerCase(); if(!q){ clearHighlight(); return;}
+    const matches=[]; root.each(d=>{ if((d.data.label && d.data.label.toLowerCase().includes(q)) || (d.data.summary && d.data.summary.toLowerCase().includes(q)) || (d.data.notes && d.data.notes.toLowerCase().includes(q))) matches.push(d); });
+    if(matches.length){ const t=matches[0]; expandPathTo(t); update(root); setTimeout(()=>{ centerNode(t); highlightNode(t); },350); } else alert('No matches found'); }
 });
 
-// search
-document.getElementById('search').addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter'){
-    const q = e.target.value.trim().toLowerCase();
-    if(!q){ clearHighlight(); return; }
-    const matches = [];
-    root.each(d=>{
-      if((d.data.label && d.data.label.toLowerCase().includes(q)) || (d.data.title && d.data.title.toLowerCase().includes(q)) || (d.data.notes && d.data.notes.toLowerCase().includes(q))){
-        matches.push(d);
-      }
-    });
-    if(matches.length){
-      let target = matches[0];
-      expandPathTo(target);
-      update(root);
-      setTimeout(()=>{ centerNode(target); highlightNode(target); }, 350);
-    } else {
-      alert('No matches found');
-    }
-  }
-});
+/* ------------- update() -------------- */
+function update(source){
+  const treeLayout = tree(root);
+  const nodes = treeLayout.descendants();
+  const links = treeLayout.links();
 
-function update(source) {
-  // compute tree layout
-  const tree = treeLayout(root);
-  const nodes = tree.descendants();
-  const links = tree.links();
+  // normalize y (depth -> horizontal)
+  nodes.forEach(d => d.y = d.depth * nodeH);
 
-  // normalize y positions (depth -> horiz)
-  nodes.forEach(d => d.y = d.depth * nodeHSpacing);
+  // LINKS — use orthogonal elbow (horizontal then vertical) to reduce overlapping curves
+  const linkSel = g.selectAll('path.link').data(links, d => d.target.data.label + '-' + d.target.depth);
+  const linkEnter = linkSel.enter().append('path').attr('class','link').attr('d', d => elbow({source:{x:source.x0,y:source.y0}, target:{x:source.x0,y:source.y0}})).style('opacity',0);
+  linkSel.exit().transition().duration(duration).style('opacity',0).remove();
+  linkEnter.merge(linkSel).transition().duration(duration).style('opacity',1).attr('d', elbow);
 
-  // ----- LINKS -----
-  const linkSel = g.selectAll(".link").data(links, d => d.target.data.label + "-" + d.target.depth);
+  // NODES
+  const nodeSel = g.selectAll('g.node').data(nodes, d => d.data.label + '-' + d.depth);
+  const nodeEnter = nodeSel.enter().append('g').attr('class','node').attr('transform', d => `translate(${source.y0},${source.x0})`).style('cursor','pointer')
+    .on('click', (event,d)=>{ event.stopPropagation(); toggle(d); update(d); showDetails(d); })
+    .on('dblclick', (event,d)=>{ event.stopPropagation(); showDetails(d, true); });
 
-  const linkEnter = linkSel.enter().append("path")
-    .attr("class","link")
-    .attr("d", d => diagonal({source: {x: source.x0, y: source.y0}, target: {x: source.x0, y: source.y0}}))
-    .style("opacity",0);
+  nodeEnter.append('rect').attr('class','node-rect').attr('width', nodeWidth).attr('height', 56).attr('x',0).attr('y',-28).attr('rx',10).attr('ry',10);
+  nodeEnter.append('text').attr('class','node-title').attr('x',14).attr('y',-6).text(d=>d.data.label).call(wrapNodeText, nodeWidth-28);
+  nodeEnter.append('text').attr('class','node-sub').attr('x',14).attr('y',22).text(d=> d.data.stage ? d.data.stage + (d.data.owner ? " • " + d.data.owner : "") : (d.data.owner ? "Owner: "+d.data.owner : "")).call(wrapNodeText, nodeWidth-28);
+  nodeEnter.append('text').attr('class','node-caret').attr('x', nodeWidth-20).attr('y', -6).style('font-size','18px').style('fill','#9ca3af').text(d => (d.children || d._children) ? (d.children ? "▾" : "▸") : "");
 
-  linkSel.exit().transition().duration(duration).style("opacity",0).remove();
-
-  const linkMerge = linkEnter.merge(linkSel);
-  linkMerge.transition().duration(duration).style("opacity",1).attr("d", diagonal);
-
-  // ----- NODES -----
-  const nodeSel = g.selectAll("g.node").data(nodes, d => d.data.label + "-" + d.depth);
-
-  const nodeEnter = nodeSel.enter().append("g")
-      .attr("class","node")
-      .attr("transform", d => `translate(${source.y0},${source.x0})`)
-      .style("cursor","pointer")
-      .on("click", (event,d)=>{ event.stopPropagation(); toggle(d); update(d); showDetails(d); })
-      .on("dblclick", (event,d)=>{ event.stopPropagation(); showDetails(d, true); });
-
-  // rectangle (we'll set width & height later)
-  nodeEnter.append("rect")
-      .attr("class","node-rect")
-      .attr("width", nodeWidth)
-      .attr("height",50)
-      .attr("x",0)
-      .attr("y",-25)
-      .attr("rx",10)
-      .attr("ry",10);
-
-  // title (wrap in tspans)
-  nodeEnter.append("text")
-      .attr("class","node-text node-title")
-      .attr("x",12)
-      .attr("y",-6)
-      .text(d => d.data.label)
-      .call(wrapText, nodeWidth - 28);
-
-  // optional subtitle: stage tag or short hint
-  nodeEnter.append("text")
-      .attr("class","node-text node-sub")
-      .attr("x",12)
-      .attr("y",20)
-      .text(d => (d.data.stage ? d.data.stage + " • " : "") + (d.data.owner ? ("Owner: " + d.data.owner) : "") )
-      .call(wrapText, nodeWidth - 28);
-
-  // small caret for collapsed nodes
-  nodeEnter.append("text")
-    .attr("class","node-text toggle-caret")
-    .attr("x", nodeWidth - 20)
-    .attr("y", -6)
-    .style("font-size","18px")
-    .style("fill","#9ca3af")
-    .text(d => (d.children || d._children) ? (d.children ? "▾" : "▸") : "");
-
-  // update + transitions
   const nodeMerge = nodeEnter.merge(nodeSel);
+  nodeMerge.transition().duration(duration).attr('transform', d => `translate(${d.y},${d.x})`);
 
-  nodeMerge.transition().duration(duration)
-    .attr("transform", d => `translate(${d.y},${d.x})`);
-
-  // After placing the node, compute dynamic height based on text lines
+  // dynamic height based on lines
   nodeMerge.each(function(d){
     const gnode = d3.select(this);
-    const titleEl = gnode.select("text.node-title").node();
-    const subEl = gnode.select("text.node-sub").node();
-    // Count tspans in title and sub
+    const titleEl = gnode.select('text.node-title').node();
+    const subEl = gnode.select('text.node-sub').node();
     const titleLines = titleEl ? titleEl.getElementsByTagName('tspan').length || 1 : 1;
     const subLines = subEl ? subEl.getElementsByTagName('tspan').length || 0 : 0;
-    // If node has notes, add an indicator height
-    const notesExtra = (d.data.notes && d.data.notes.length>0) ? 1 : 0;
-    const rectHeight = 26 + (titleLines * 16) + (subLines * 14) + (notesExtra * 12);
-    gnode.select("rect.node-rect")
-      .attr("width", nodeWidth)
-      .attr("height", rectHeight)
-      .attr("x", 0)
-      .attr("y", -rectHeight/2);
-    // update caret if present
-    const caret = gnode.select("text.toggle-caret");
-    if(caret.size()){
-      caret.attr("x", nodeWidth - 18).text((d.children || d._children) ? (d.children ? "▾" : "▸") : "");
-    }
+    const notesExtra = (d.data.summary && d.data.summary.length>80) ? 1 : 0;
+    const rectH = 26 + (titleLines*16) + (subLines*14) + (notesExtra*10);
+    gnode.select('rect.node-rect').attr('width', nodeWidth).attr('height', rectH).attr('x',0).attr('y', -rectH/2);
+    gnode.select('text.node-caret').attr('x', nodeWidth-18).text((d.children || d._children) ? (d.children ? "▾" : "▸") : "");
   });
 
-  // exit
-  nodeSel.exit().transition().duration(duration).attr("transform", d => `translate(${source.y},${source.x})`).remove();
+  nodeSel.exit().transition().duration(duration).attr('transform', d => `translate(${source.y},${source.x})`).remove();
 
-  // store old positions for transition
   nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
 }
 
-// diagonal path generator (curved vertical)
-function diagonal(d){
-  const source = {x: d.source.x, y: d.source.y};
-  const target = {x: d.target.x, y: d.target.y};
-  const midY = (source.y + target.y) / 2;
-  return `M ${source.y + 140} ${source.x}
-          C ${midY + 70} ${source.x} ${midY + 70} ${target.x} ${target.y + 140} ${target.x}`;
+/* orthogonal elbow path: horizontal from parent to child y, then vertical to child x */
+function elbow(d){
+  const s = {x:d.source.x, y:d.source.y}, t = {x:d.target.x, y:d.target.y};
+  const midY = (s.y + t.y)/2;
+  return `M ${s.y + 150} ${s.x}
+          L ${midY + 150} ${s.x}
+          L ${midY + 150} ${t.x}
+          L ${t.y + 150} ${t.x}`;
 }
 
-// collapse helper
 function collapse(d){
   if(d.children){
     d._children = d.children;
@@ -429,8 +357,6 @@ function collapse(d){
     d.children = null;
   }
 }
-
-// expand helper
 function expand(d){
   if(d._children){
     d.children = d._children;
@@ -438,168 +364,132 @@ function expand(d){
     d._children = null;
   }
 }
-
 function toggle(d){
-  if(d.children){
-    d._children = d.children;
-    d.children = null;
-  } else {
-    d.children = d._children;
-    d._children = null;
-  }
+  if(d.children){ d._children = d.children; d.children = null; } else { d.children = d._children; d._children = null; }
 }
-
 function expandAll(node){
-  node.children && node.children.forEach(function(c){ expandAll(c); });
-  if(node._children) node.children = node._children, node._children = null;
+  node.children && node.children.forEach(c=> expandAll(c));
+  if(node._children) { node.children = node._children; node._children = null; }
 }
 function collapseAll(node){
-  node.children && node.children.forEach(function(c){ collapseAll(c); });
-  if(node.children) node._children = node.children, node.children = null;
+  node.children && node.children.forEach(c=> collapseAll(c));
+  if(node.children) { node._children = node.children; node.children = null; }
 }
 
-// show details in side panel
+/* Details pane logic — concise fields and Read more toggle */
 let pinned = false;
 function showDetails(d, pin=false){
   pinned = !!pin;
   const title = d.data.title || d.data.label;
-  const notes = d.data.notes || "(no extra notes)";
+  const summary = d.data.summary || (d.data.notes ? d.data.notes.slice(0,140) + "…" : "(no summary)");
   const owner = d.data.owner ? ("\nOwner: " + d.data.owner) : "";
-  const stage = d.data.stage ? ("Stage: " + d.data.stage + "\n") : "";
-  document.getElementById('nodeTitle').innerText = title + (d.data.stage ? (" • " + d.data.stage) : "");
-  // create a short preview + full text toggle
-  const preview = (notes.length > 280) ? notes.slice(0,280).trim() + "…" : notes;
-  document.getElementById('nodeMeta').innerText = preview + owner;
-  document.getElementById('nodeExtras').innerText = `Depth: ${d.depth} • Children: ${(d.children||d._children||[]).length}`;
-  // show read toggle if long
+  const stage = d.data.stage ? d.data.stage : "";
+  document.getElementById('nodeTitle').innerText = title + (stage ? " • " + stage : "");
+  document.getElementById('nodeMeta').innerText = summary;
+  // fields: KPIs, cadence, actions, resources
+  const fieldsEl = document.getElementById('nodeFields');
+  fieldsEl.innerHTML = '';
+  if(d.data.kpis && d.data.kpis.length){
+    const ul = document.createElement('ul'); ul.className='field-list';
+    d.data.kpis.forEach(k=>{ const li=document.createElement('li'); li.innerText = "KPI: " + k; ul.appendChild(li); });
+    fieldsEl.appendChild(ul);
+  }
+  if(d.data.cadence){ const p = document.createElement('div'); p.className='small'; p.innerText = "Monitoring cadence: " + d.data.cadence; fieldsEl.appendChild(p);}
+  if(d.data.actions && d.data.actions.length){
+    const p = document.createElement('div'); p.className='small'; p.innerHTML = "<strong>Suggested actions:</strong>";
+    const ul = document.createElement('ul'); ul.className='field-list';
+    d.data.actions.forEach(a=>{ const li=document.createElement('li'); li.innerText = a; ul.appendChild(li); });
+    fieldsEl.appendChild(p); fieldsEl.appendChild(ul);
+  }
+  if(d.data.resources && d.data.resources.length){
+    const p = document.createElement('div'); p.className='small'; p.innerHTML = "<strong>Resources:</strong>";
+    const ul = document.createElement('ul'); ul.className='field-list';
+    d.data.resources.forEach(r=>{ const li=document.createElement('li'); const a=document.createElement('a'); a.href=r.url; a.innerText=r.label; a.className='inline'; a.target='_blank'; li.appendChild(a); ul.appendChild(li); });
+    fieldsEl.appendChild(p); fieldsEl.appendChild(ul);
+  }
+  // read toggle for full notes
   const readToggle = document.getElementById('readToggle');
-  if(notes.length > 280){
+  if(d.data.notes && d.data.notes.length > 250){
     readToggle.style.display = 'inline';
     readToggle.innerText = 'Read more';
     readToggle.onclick = function(){
-      if(readToggle.innerText === 'Read more'){
-        document.getElementById('nodeMeta').innerText = notes + owner;
-        readToggle.innerText = 'Read less';
-      } else {
-        document.getElementById('nodeMeta').innerText = preview + owner;
-        readToggle.innerText = 'Read more';
-      }
+      if(readToggle.innerText === 'Read more'){ document.getElementById('nodeMeta').innerText = d.data.notes; readToggle.innerText = 'Read less'; }
+      else { document.getElementById('nodeMeta').innerText = summary; readToggle.innerText = 'Read more'; }
     };
-  } else {
-    readToggle.style.display = 'none';
-  }
-  // highlight node
-  clearHighlight();
-  highlightNode(d);
-  if(!pinned){
-    centerNode(d);
-  }
+  } else { readToggle.style.display = 'none'; }
+  // highlight and center
+  clearHighlight(); highlightNode(d);
+  if(!pinned) centerNode(d);
 }
 
-// center the view to a node (smooth)
 function centerNode(d){
-  // compute transform that centers node
   const svgRect = svg.node().getBoundingClientRect();
   const scale = 1.0;
-  const x = -d.y * scale + svgRect.width / 2 - 160;
-  const y = -d.x * scale + svgRect.height / 2;
+  const x = -d.y * scale + svgRect.width/2 - 160;
+  const y = -d.x * scale + svgRect.height/2;
   svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(x,y).scale(scale));
 }
 
-// highlight node by stroking its rect
 function highlightNode(d){
-  // remove previous highlights
-  g.selectAll("rect.node-rect").classed("highlight", false);
-  // find matching DOM node
-  const nodes = g.selectAll("g.node").nodes();
-  const match = nodes.find(n => n.__data__ === d);
-  if(match){
-    d3.select(match).select("rect.node-rect").classed("highlight", true);
-  }
+  g.selectAll('rect.node-rect').classed('highlight', false);
+  const nodes = g.selectAll('g.node').nodes();
+  const n = nodes.find(n=> n.__data__ === d);
+  if(n) d3.select(n).select('rect.node-rect').classed('highlight', true);
 }
-// clear highlight
-function clearHighlight(){
-  g.selectAll("rect.node-rect").classed("highlight", false);
-}
+function clearHighlight(){ g.selectAll('rect.node-rect').classed('highlight', false); }
 
-// expand path from root to target
 function expandPathTo(target){
   let node = target;
   while(node.parent){
-    if(node.parent._children) { node.parent.children = node.parent._children; node.parent._children = null; }
+    if(node.parent._children){ node.parent.children = node.parent._children; node.parent._children = null; }
     node = node.parent;
   }
 }
 
-// fit to view - simple reset transform and zoom out to fit
+/* Fit to view - compute bounding extents and scale */
 function fitToView(){
-  // reset transform with padding
-  const svgRect = svg.node().getBoundingClientRect();
-  // calculate bounding box of nodes
-  const nodes = g.selectAll("g.node").nodes();
+  const nodes = g.selectAll('g.node').nodes();
   if(!nodes.length) { svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity.translate(20,20).scale(1)); return; }
   let minX=1e9, minY=1e9, maxX=-1e9, maxY=-1e9;
-  nodes.forEach(n => {
-    const bbox = n.getBoundingClientRect();
-    minX = Math.min(minX, bbox.left);
-    minY = Math.min(minY, bbox.top);
-    maxX = Math.max(maxX, bbox.right);
-    maxY = Math.max(maxY, bbox.bottom);
-  });
-  const contentW = maxX - minX;
-  const contentH = maxY - minY;
-  const scale = Math.max(0.25, Math.min(1.2, Math.min((svgRect.width - 40) / contentW, (svgRect.height - 40) / contentH)));
-  const tx = -minX + 20;
-  const ty = -minY + 20;
+  nodes.forEach(n => { const b = n.getBoundingClientRect(); minX = Math.min(minX, b.left); minY = Math.min(minY, b.top); maxX = Math.max(maxX, b.right); maxY = Math.max(maxY, b.bottom); });
+  const svgRect = svg.node().getBoundingClientRect();
+  const contentW = maxX - minX, contentH = maxY - minY;
+  const scale = Math.max(0.25, Math.min(1.2, Math.min((svgRect.width - 80)/contentW, (svgRect.height - 80)/contentH)));
+  const tx = -minX + 40, ty = -minY + 40;
   svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx,ty).scale(scale));
 }
 
-// wrap long text inside node (tspan approach)
-function wrapText(selection, width){
+/* wrap text into tspans for node texts */
+function wrapNodeText(selection, width){
   selection.each(function(){
     const text = d3.select(this);
     const words = text.text().split(/\s+/).reverse();
-    let word;
-    let line = [];
-    let lineNumber = 0;
-    const lineHeight = 1.05; // ems
-    const x = text.attr("x");
-    const y = text.attr("y");
+    let word; let line=[]; let lineNumber=0; const lineHeight=1.05; const x = text.attr('x'); const y = text.attr('y');
     text.text(null);
-    let tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", "0em");
-    while (word = words.pop()) {
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width) {
-        line.pop();
-        tspan.text(line.join(" "));
-        line = [word];
-        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + "em").text(word);
+    let tspan = text.append('tspan').attr('x',x).attr('y',y).attr('dy','0em');
+    while(word = words.pop()){
+      line.push(word); tspan.text(line.join(' '));
+      if(tspan.node().getComputedTextLength() > width){
+        line.pop(); tspan.text(line.join(' '));
+        line=[word]; tspan = text.append('tspan').attr('x',x).attr('y',y).attr('dy',++lineNumber*lineHeight + 'em').text(word);
       }
     }
   });
 }
 
-// clear highlight when clicking outside
-svg.on("click", (event)=>{
-  if(event.target.tagName === 'svg'){ clearHighlight(); if(!pinned){ document.getElementById('nodeTitle').innerText="(click a node)"; document.getElementById('nodeMeta').innerText="Select a node to view notes, suggested actions, or owner."; document.getElementById('nodeExtras').innerText=""; document.getElementById('readToggle').style.display='none'; } }
+/* click outside clears highlight and unpins (unless pinned) */
+svg.on('click', (event)=>{
+  if(event.target.tagName === 'svg'){ clearHighlight(); if(!pinned){ document.getElementById('nodeTitle').innerText='(click a node)'; document.getElementById('nodeMeta').innerText='Select a node to view short summary, KPIs and suggested next actions.'; document.getElementById('nodeFields').innerHTML=''; document.getElementById('readToggle').style.display='none'; } }
 });
 
-/* Initialize drawing once DOM sizes are known */
+/* Initialize */
 function init(){
   root = d3.hierarchy(treeData);
-  root.x0 = document.getElementById('canvas').clientHeight / 2;
-  root.y0 = 0;
-  // collapse deeper levels by default for clarity
-  if (root.children) root.children.forEach(function(d, i){
-    if (d.children) {
-      d._children = d.children;
-      d.children = null;
-    }
-  });
+  root.x0 = canvas.clientHeight/2; root.y0 = 0;
+  // collapse second-level children to keep view clean
+  if(root.children){ root.children.forEach(c=> { if(c.children){ c._children = c.children; c.children = null; } }); }
   update(root);
-  // initial fit slightly
-  setTimeout(()=>fitToView(), 450);
+  setTimeout(()=> fitToView(), 400);
 }
 init();
 

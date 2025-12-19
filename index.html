@@ -26,6 +26,18 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
+            position: relative; /* Needed for absolute positioning context if not on body */
+        }
+
+        /* Top Right Logo Style */
+        .top-right-logo {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 120px; /* Adjust size as needed */
+            height: auto;
+            z-index: 1000; /* Ensure it sits on top */
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
 
         /* Container to handle scrolling on smaller screens */
@@ -101,6 +113,8 @@
     </style>
 </head>
 <body>
+
+    <img src="image (7).png" alt="Logo" class="top-right-logo">
 
 <div class="mindmap-container">
     <svg width="1450" height="1250" viewBox="0 0 1450 1250" xmlns="http://www.w3.org/2000/svg">

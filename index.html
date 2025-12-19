@@ -40,7 +40,7 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
 
-        /* Container to handle scrolling on smaller screens */
+        /* Container to handle scrolling */
         .mindmap-container {
             width: 100%;
             max-width: 1600px;
@@ -49,6 +49,7 @@
             box-sizing: border-box;
             display: flex;
             justify-content: center;
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
         }
 
         /* SVG Styles */
@@ -56,6 +57,7 @@
             display: block;
             shape-rendering: geometricPrecision;
             text-rendering: geometricPrecision;
+            min-width: 1450px; /* Ensures the map doesn't squish on mobile */
         }
 
         /* Node Styling */
@@ -147,6 +149,32 @@
 
         .policy-button:hover {
             background-color: #F1F5F9;
+        }
+
+        /* MOBILE ADJUSTMENTS */
+        @media screen and (max-width: 768px) {
+            .top-right-logo {
+                position: relative;
+                top: 20px;
+                right: 0;
+                margin-bottom: 20px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .context-box {
+                margin-left: 20px;
+                margin-right: 20px;
+                align-self: center;
+                max-width: 90%;
+            }
+
+            /* Allow the user to swipe to see the full mindmap */
+            .mindmap-container {
+                justify-content: flex-start;
+                padding-top: 10px;
+            }
         }
     </style>
 </head>
@@ -262,7 +290,7 @@
             </g>
             <g class="node-group" transform="translate(850, 450)">
                 <rect class="node-rect" x="0" y="-20" width="280" height="40"></rect>
-                <text class="text-desc" x="15" y="0" dominant-baseline="middle">Decision from Central Committee </text>
+                <text class="text-desc" x="15" y="0" dominant-baseline="middle">Decision timing: target ≤ 10 working days</text>
             </g>
 
             <g class="node-group" transform="translate(850, 520)">
@@ -326,5 +354,3 @@
 
 </body>
 </html>
-
-```
